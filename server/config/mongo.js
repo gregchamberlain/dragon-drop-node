@@ -1,3 +1,1 @@
-module.exports = process.env.NODE_ENV === 'production' ?
-'mongodb://admin:chester131@ds033106.mlab.com:33106/dragon-drop' :
-'mongodb://localhost/dragon-drop';
+module.exports = 'mongodb://admin:rfQyVD5eFnWwe4nkhmE6DkWty75KCzUN@ds033106.mlab.com:33106/dragon-drop';
