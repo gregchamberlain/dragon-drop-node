@@ -12,6 +12,10 @@ In this project I will be creating a Node.js backend for my full stack project [
 - [ ] Make minor changes to front end to adjust for differences in the API.
 - [ ] Close to the same functionality as the original site.
 
+## Wireframes
+
+Due to the fact that this is strictly a backend project, with few behind the scenes tweaks make to the frontend data handling I don't see a need for wireframes for this project. [Here](https://www.github.com/gregchamberlain/dragon-drop/docs/wireframes) is a link to the wireframes for the Rails implementation that will also be applicable to this project.
+
 ## Technologies
 
 #### Node.js
