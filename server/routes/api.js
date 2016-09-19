@@ -1,12 +1,17 @@
 const router = require('express').Router();
 const sites = require('./sites');
 const pages = require('./pages');
+const users = require('./users');
+const session = require('./session');
+const auth = require('../middleware/auth');
 
 router.get('/', (req, res) => {
   res.send('This is the api!');
 });
 
-router.use('/sites', sites);
-router.use('/pages', pages);
+router.use('/sites', auth, sites);
+router.use('/pages', auth, pages);
+router.use('/users', users);
+router.use('/session', session);
 
 module.exports = router;

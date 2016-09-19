@@ -3,13 +3,15 @@ const Site = require('../models/site');
 const Page = require('../models/page');
 
 router.get('/', (req, res) => {
-  Site.find((err, sites) => {
+  Site.find({userId: req.user._id}, (err, sites) => {
     res.json(sites);
   });
 });
 
 router.post('/', (req, res, next) => {
-  Site.create(req.body, (err, site) => {
+  const newSite = req.body.site;
+  newSite.userId = req.user.id;
+  Site.create(newSite, (err, site) => {
     if (err) return next(err);
     res.json(site);
   });
@@ -30,14 +32,14 @@ router.get('/:id/pages', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  Site.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, site) => {
+  Site.findByIdAndUpdate(req.params.id, req.body.site, {new: true}, (err, site) => {
     if (err) next(err);
     res.json(site);
   });
 });
 
 router.delete('/:id', (req, res, next) => {
-  Site.findByIdAndRemove(req.params.id, req.body, (err, site) => {
+  Site.findByIdAndRemove(req.params.id, req.body.site, (err, site) => {
     if (err) return next(err);
     res.json(site);
   });

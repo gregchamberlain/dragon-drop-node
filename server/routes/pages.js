@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res, next) => {
-  Page.create(req.body, (err, page) => {
+  Page.create(req.body.page, (err, page) => {
     if (err) return next(err);
     res.json(page);
   });
@@ -22,14 +22,14 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  Page.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, page) => {
+  Page.findByIdAndUpdate(req.params.id, req.body.page, {new: true}, (err, page) => {
     if (err) next(err);
     res.json(page);
   });
 });
 
 router.delete('/:id', (req, res, next) => {
-  Page.findByIdAndRemove(req.params.id, req.body, (err, page) => {
+  Page.findByIdAndRemove(req.params.id, req.body.page, (err, page) => {
     if (err) return next(err);
     res.json(page);
   });
