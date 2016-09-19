@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Page = require('./page');
 const Schema = mongoose.Schema;
 const parseIdentifier = val => (
   val.slice(0, 24).toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')

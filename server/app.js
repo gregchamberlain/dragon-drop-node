@@ -5,7 +5,7 @@ const api = require('./routes/api');
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const MongoConfig = require('./config/mongo.js');
+const MongoConfig = process.env.MONGO_URL || require('./config/mongo.js');
 mongoose.connect(MongoConfig)
   .then(() => console.log('connection successfull'))
   .catch(err => console.error(err));
