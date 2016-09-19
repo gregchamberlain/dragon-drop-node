@@ -14,7 +14,7 @@ In this project I will be creating a Node.js backend for my full stack project [
 
 ## Wireframes
 
-Due to the fact that this is strictly a backend project, with few behind the scenes tweaks make to the frontend data handling I don't see a need for wireframes for this project. [Here](https://www.github.com/gregchamberlain/dragon-drop/docs/wireframes) is a link to the wireframes for the Rails implementation that will also be applicable to this project.
+Due to the fact that this is strictly a backend project, with few behind the scenes tweaks make to the frontend data handling I don't see a need for wireframes for this project. [Here](https://github.com/gregchamberlain/dragon-drop/tree/master/docs/wireframes) is a link to the wireframes for the Rails implementation that will also be applicable to this project.
 
 ## Technologies
 
