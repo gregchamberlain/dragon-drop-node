@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const Page = require('../models/page');
 
-router.get('/', (req, res) => {
-  Page.find((err, pages) => {
-    res.json(pages);
-  });
-});
-
 router.post('/', (req, res, next) => {
   Page.create(req.body.page, (err, page) => {
     if (err) return next(err);

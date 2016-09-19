@@ -18,7 +18,21 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  Site.findById(req.params.id, (err, site) => {
+  Site.findOne({identifier: req.params.id}, (err, site) => {
+    if (err) return next(err);
+    res.json(site);
+  });
+});
+
+router.put('/:id', (req, res, next) => {
+  Site.findOneAndUpdate({identifier: req.params.id}, req.body.site, {new: true}, (err, site) => {
+    if (err) next(err);
+    res.json(site);
+  });
+});
+
+router.delete('/:id', (req, res, next) => {
+  Site.findByIdAndRemove(req.params.id, req.body.site, (err, site) => {
     if (err) return next(err);
     res.json(site);
   });
@@ -31,17 +45,11 @@ router.get('/:id/pages', (req, res, next) => {
   });
 });
 
-router.put('/:id', (req, res, next) => {
-  Site.findByIdAndUpdate(req.params.id, req.body.site, {new: true}, (err, site) => {
-    if (err) next(err);
-    res.json(site);
-  });
-});
-
-router.delete('/:id', (req, res, next) => {
-  Site.findByIdAndRemove(req.params.id, req.body.site, (err, site) => {
+router.post('/:id/pages', (req, res, next) => {
+  const newPage = Object.assign({}, req.body.page, {siteId: req.params.id});
+  Page.create(newPage, (err, page) => {
     if (err) return next(err);
-    res.json(site);
+    res.json(page);
   });
 });
 

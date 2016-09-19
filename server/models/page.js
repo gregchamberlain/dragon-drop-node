@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const PageSchema = new mongoose.Schema({
-  siteId: { type: Schema.ObjectId, ref: 'Site', required: true },
+  siteId: { type: String, ref: 'Site', required: true },
   name: { type: String, required: true },
   path: { type: String, required: true },
   components: [{
