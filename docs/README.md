@@ -31,11 +31,14 @@ Mongoose is the ORM I will be utilizing to communicate with MongoDB from my node
 - npm init
 - server folder with app.js to hold entry to the server.
 - client folder that will hold the frontend code from the original project.
+
 **Day 2**: Mongoose schema models for `Users`, `Sites`, `Pages`, and backend auth.
 - Fully working backend auth with same structure as Rails app.
 - models folder holding each `User`, `Site`, and `Page` model.
+
 **Day 3**: Setup routes to handle API requests.
 - Similar routes to the Rails API.
+
 **Day 4**: Modify frontend to ensure compatibility with Node API.
 - Some API endpoints will be different and need to be adjusted in the fronend.
 - How `Component`s are created and destroyed on the backend is different than in the Rails implementation so the    `Component` Redux cycle will need to modified.
