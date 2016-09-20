@@ -18,6 +18,10 @@ app.use(bodyParser.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+const morgan = require('morgan');
+
+app.use(morgan('combined'));
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
 

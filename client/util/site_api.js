@@ -19,7 +19,7 @@ export const destroySite = site => ({
 });
 
 export const updateSite = (site, oldSite) => ({
-  method: 'PATCH',
+  method: 'PUT',
   url: `api/sites/${oldSite.identifier}`,
   data: {site}
 });

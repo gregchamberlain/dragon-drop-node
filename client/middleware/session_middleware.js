@@ -14,7 +14,7 @@ const SessionMiddleware = ({getState, dispatch}) => next => action => {
         request: API.login(action.user),
         loading: ['currentUser', 'Logging in...'],
         success: resp => {
-          dispatch(receiveEntity(normalize(resp.sites, arrayOfSites)))
+          dispatch(receiveEntity(normalize(resp.sites, arrayOfSites)));
           dispatch(ACTIONS.receiveCurrentUser(resp));
           dispatch(push('/sites'));
           return 'Successfully Logged In';

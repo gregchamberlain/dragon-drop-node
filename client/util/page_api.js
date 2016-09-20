@@ -19,7 +19,7 @@ export const createPage = (siteId, page) => ({
 });
 
 export const updatePage = page => ({
-  method: 'PATCH',
+  method: 'PUT',
   url: `api/pages/${page.id}`,
   data: {page}
 });

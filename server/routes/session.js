@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/user');
+const Site = require('../models/site');
 const bcrypt = require('bcrypt');
 const auth = require('../middleware/auth');
 
@@ -8,12 +9,14 @@ router.post('/', (req, res, next) => {
     if (err) return next(err);
     if (!user) return res.status(404).json({message: 'A user with that email does not exist.'});
     if (bcrypt.compareSync(req.body.user.password, user.passwordDigest)) {
-      res.cookie(
-        '__DRAGONDROP__SESSION',
-        user.sessionToken,
-        { maxAge: 900000, httpOnly: true, path: '/' }
-      );
-      res.json({_id: user.id, email: user.email});
+      Site.find({userId: user.id}, (sErr, sites) => {
+        res.cookie(
+          '__DRAGONDROP__SESSION',
+          user.sessionToken,
+          { maxAge: 900000, httpOnly: true }
+        );
+        res.json({id: user.id, email: user.email, sites});
+      });
     } else {
       res.status(400).json({message: 'Invalid password for that email'});
     }
