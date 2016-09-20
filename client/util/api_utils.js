@@ -5,7 +5,6 @@ import 'whatwg-fetch';
 
 export const call = ({ dispatch, request, loading, success, error, prev, preloaded }) => {
   const onSuccess = resp => {
-    console.log(resp);
     const successMessage = success && success(resp);
     dispatch(stopLoading(loading[0]));
     if (successMessage) dispatch(createNotification('success', successMessage));

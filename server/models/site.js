@@ -13,6 +13,7 @@ const SiteSchema = new Schema({
     required: true,
     unique: true
   },
+  rootPage: { type: Schema.ObjectId, ref: 'Page', required: true },
   template: { type: Boolean, default: false}
 }, {
   timestamps: true

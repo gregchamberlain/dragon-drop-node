@@ -1,12 +1,20 @@
 import { normalize, Schema, arrayOf } from 'normalizr';
 
-export const site = new Schema('sites', { idAttribute: 'identifier' });
+export const site = new Schema('sites', {
+  idAttribute: 'identifier',
+  assignEntity: (output, key, value, input) => {
+    // output.id = output._id;
+    // console.log(output);
+    // delete output._id;
+  }
+});
+
 export const arrayOfSites = arrayOf(site);
 
 export const template = new Schema('templates');
 export const arrayOfTemplates = arrayOf(template);
 
-const pageId = entity => `${entity.site_id}${entity.path}`
+const pageId = entity => `${entity.siteId}${entity.path}`;
 
 export const page = new Schema('pages', { idAttribute: pageId });
 export const arrayOfPages = arrayOf(page);

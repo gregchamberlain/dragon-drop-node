@@ -9,7 +9,7 @@ router.post('/', (req, res, next) => {
     if (err) return next(err);
     if (!user) return res.status(404).json({message: 'A user with that email does not exist.'});
     if (bcrypt.compareSync(req.body.user.password, user.passwordDigest)) {
-      Site.find({userId: user.id}, (sErr, sites) => {
+      Site.find({userId: user.id}).populate('rootPage').exec((sErr, sites) => {
         res.cookie(
           '__DRAGONDROP__SESSION',
           user.sessionToken,

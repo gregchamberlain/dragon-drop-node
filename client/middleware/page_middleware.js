@@ -7,7 +7,7 @@ import { normalize } from 'normalizr';
 import { receiveEntity } from '../actions/entity_actions.js';
 import { startLoading, stopLoading } from '../actions/loading_actions.js';
 import { arrayOfPages, page } from '../actions/schema.js';
-import { createNotification } from '../actions/notification_actions.js'
+import { createNotification } from '../actions/notification_actions.js';
 import { call } from '../util/api_utils.js';
 import { stringify } from '../util';
 import { push } from 'react-router-redux';
@@ -68,10 +68,10 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       delete p.components
       call({
         dispatch,
-        request: updatePage(p),
+        request: updatePage(getState().pages[action.pageId]),
         loading: ['page', 'Saving Page...'],
         success: resp => {
-          dispatch(receiveEntity(normalize(resp, page)))
+          dispatch(receiveEntity(normalize(resp, page)));
           if (action.preview) dispatch(push(action.preview));
           return `${p.name} Page saved!`
         },

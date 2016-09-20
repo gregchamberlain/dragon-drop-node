@@ -1,5 +1,5 @@
 export const toArray = obj => (
-  Object.keys(obj).map(id => obj[id]).filter(entity => entity.id)
+  Object.keys(obj).map(id => obj[id])
 );
 
 export const map = (obj, relation, state) => {
