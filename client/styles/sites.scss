@@ -1,0 +1,246 @@
+$light-blue-600: #03A9F4;
+
+.sites-index {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  background: #eceff1;
+  bottom: 0;
+}
+
+.sites-index-item {
+  overflow: hidden;
+  position: relative;
+  width: 240px;
+  height: 135px;
+  cursor: pointer;
+  // font-size: 12px;
+
+
+  .preview-button {
+    position: absolute;
+    display: none;
+    bottom: 10px;
+    left: 5%;
+    width: 90%;
+    background: rgba(68, 68, 68, 0.8);
+    text-transform: uppercase;
+    background: #444;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    .preview-button {
+      display: block;
+    }
+  }
+}
+
+.site-item {
+  position: relative;
+  border-color: #ccc;
+
+  &.selected {
+    border-color: #333;
+  }
+
+  &:before {
+    display: block;
+    height: 30px;
+    width: 30px;
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 150px;
+    border-bottom: 30px solid #CCC;
+    border-right: 30px solid transparent;
+    border-left: 30px solid transparent;
+  }
+}
+
+.site-wrapper {
+  position: relative;
+  border-top: 5px solid #ccc;
+  border-left: 5px solid #ccc;
+  border-right: 5px solid #ccc;
+  border-bottom: 15px solid #ccc;
+  border-color: inherit;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2),0 1px 1px 0 rgba(0,0,0,0.14),0 2px 1px -1px rgba(0,0,0,0.12);
+  border-radius: 5px;
+  margin: 15px;
+  background: #fff;
+  transition: box-shadow 0.3s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 10px #444;
+  }
+
+  // &.selected {
+  //   border-color: blue;
+  // }
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   left: -3px;
+  //   border-top: 1px solid #888;
+  //   border-top-right-radius: 2px;
+  //   border-top-left-radius: 2px;
+  //   bottom: -10px;
+  //   height: 10px;
+  //   width: calc(100% + 6px);
+  // }
+  //
+  // &:before {
+  //   pointer-events: none;
+  //   background: none !important;
+  //   top: -5px;
+  //   left: -5px;
+  //   border-radius: 5px;
+  //   content: "";
+  //   position: absolute;
+  //   width: calc(100% + 7px);
+  //   height: calc(100% + 12px);
+  //   border: 2px solid #888;
+  // }
+}
+
+.sites-index-items {
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sites-content {
+  height: 100%;
+}
+
+.site-settings-page {
+  height: 100%;
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  h1 {
+    margin: 10px 0;
+  }
+
+  button {
+    border:none;
+    background: #444;
+    font-weight: 700;
+    color: white;
+    outline: none;
+    border-radius: 2px;
+    padding: 10px 40px;
+    margin: 10px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    &:disabled {
+      background: #ccc;
+    }
+  }
+
+  .destroy-button {
+    padding: 10px 20px;
+    font-size: 10px;
+    background: red;
+  }
+}
+
+.site-settings-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.site-settings-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  input, textarea {
+    width: 100%;
+    resize: none;
+    font-size: 24px;
+    box-sizing: border-box;
+    display: block;
+    margin: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #888;
+    padding: 5px;
+    outline: none;
+
+    &:disabled {
+      border: none;
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      border-bottom: 2px solid black;
+
+  }
+
+}
+
+  label {
+    width: 100%;
+  }
+}
+
+
+.new-site-form {
+  position: fixed;
+  width: 400px;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  input, textarea {
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    border: none;
+    border-bottom: 2px solid #888;
+    background: none;
+    outline: none;
+    resize: none;
+    margin: 10px 0;
+    padding: 5px;
+
+    &:focus {
+      border-bottom: 2px solid black;
+    }
+  }
+
+  button {
+    text-transform: uppercase;
+    background: #444;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 5px;
+    width: 100%;
+  }
+}
+
+.new-site-templates {
+  margin-top: 100px;
+  margin-left: 400px;
+}

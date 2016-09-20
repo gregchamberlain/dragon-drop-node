@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const api = require('./routes/api');
+const User = require('./models/user');
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -17,8 +18,20 @@ app.use(bodyParser.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.send('This will be the site!');
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/public');
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', (req, res, next) => {
+  User.findOne({
+    sessionToken: req.cookies['__DRAGONDROP__SESSION']
+  }, (err, user) => {
+    if (err) return next(err);
+    if (user )
+    user = user || 'null';
+    res.render('index');
+  });
 });
 
 app.use('/api', api);

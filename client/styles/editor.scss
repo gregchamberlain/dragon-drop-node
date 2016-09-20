@@ -1,0 +1,91 @@
+$toolbar-height: 56px;
+
+.editor-toolbar {
+  position: fixed;
+  top: 0;
+  left: 56px;
+  right: 0;
+  height: $toolbar-height;
+  background: #666;
+  display: flex;
+  align-items: center;
+  color: #eee;
+
+  .toolbar-item {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #eee;
+    padding: 0 15px;
+
+    &.brand {
+      font-size: 18px;
+      font-weight: bold;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none;   /* Chrome/Safari/Opera */
+      -khtml-user-select: none;    /* Konqueror */
+      -moz-user-select: none;      /* Firefox */
+      -ms-user-select: none;       /* Internet Explorer/Edge */
+      user-select: none;
+    }
+
+    &.action {
+      cursor: pointer;
+      text-transform: uppercase;
+      &:hover {
+        color: #fff
+      }
+    }
+
+    .icon {
+      font-size: 24px;
+      margin-left: 5px;
+      margin-right: 5px;
+      transform: rotateZ(0deg);
+      transition: transform 0.5s;
+    }
+
+    .rotated {
+      transform: rotateZ(45deg);
+    }
+
+  }
+
+  select {
+    height: 100%;
+    background: #666;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: #eee;
+    padding: 0 15px;
+
+    option {
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.editor-content {
+  position: fixed;
+  top: $toolbar-height;
+  left: 64px;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  .catalog-container {
+    position: fixed;
+    left: 66px;
+    top: 66px;
+    border-radius: 2px;
+    width: 150px;
+    background: #666;
+    padding: 10px;
+    box-shadow: 2px 2px 10px black;
+  }
+}

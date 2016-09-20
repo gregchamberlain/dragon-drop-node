@@ -1,0 +1,314 @@
+@import "toolbar";
+@import "modal";
+@import "sites";
+@import "home";
+@import "registration";
+@import "page_editor";
+@import "sidebar";
+@import "loading";
+@import "notifications";
+@import "tabs";
+@import "navigation";
+@import "page-settings";
+@import "editor";
+@import "preview";
+@import "props-editor";
+@import "tour";
+
+ * {
+   box-sizing: border-box;
+   font-family: 'Roboto', sans-serif;
+ }
+
+button {
+  cursor: pointer;
+}
+
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #eee;
+    box-sizing: border-box;
+    // overflow-x: hidden;
+    // cursor: url(http://img12.deviantart.net/3be5/i/2012/009/0/7/windows_red_dragon_cursor_by_kytheira-d4ltvsx.png) 30 -40, auto;
+  }
+
+  body, #root {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    // background: black;
+  }
+
+
+  .grid-wrapper {
+    flex: 1;
+    width: 100%;
+    padding: 20px 50px;
+  }
+
+  .fill {
+    width: 100%;
+    height: 100%;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+
+  .header-photo {
+    position: absolute;
+    height: 40%;
+    width: 100%;
+    background: url(https://hd.unsplash.com/photo-1420768255295-e871cbf6eb81);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    justify-content: center;
+
+    h1 {
+      color: #fff;
+      font-size: 40px;
+      text-shadow: 0 0 10px #444;
+      cursor: default;
+    }
+  }
+
+  .app-container {
+    height: 100%;
+  }
+
+  .flex-space {
+    flex: 1;
+  }
+
+.spinner {
+  text-align: center;
+}
+
+.spinner > div {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 0 5px 2px 5px;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+// $vHeight: 100vh;
+// $vWidth: 100vw;
+// $cWidth: $vWidth - 264px - 50px;
+// $cHeight: $vHeight / $vWidth * $cWidth;
+
+.layout-editor {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+ .react-grid-layout {
+   position: relative;
+   transition: height 200ms ease;
+   background: #fff;
+ }
+ .react-grid-item {
+   background: transparent;
+  //  transition: all 200ms ease;
+  //  transition-property: left, top;
+ }
+ .react-grid-item.cssTransforms {
+   transition-property: transform;
+ }
+ .react-grid-item.resizing {
+   z-index: 1;
+ }
+
+ .react-grid-item.react-draggable-dragging {
+   transition: none;
+   z-index: 3;
+   box-shadow: 4px 4px 20px black;
+ }
+
+ .react-grid-item.react-grid-placeholder {
+   background: #444;
+   opacity: 0.2;
+   transition-duration: 100ms;
+   z-index: 2;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+ }
+
+ .react-grid-item > .react-resizable-handle {
+   position: absolute;
+   width: 25px;
+   height: 25px;
+   bottom: 5px;
+   right: 5px;
+   /*background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');*/
+   /*background-position: bottom right;*/
+   border-right: 3px solid #444;
+   border-bottom: 3px solid #444;
+   padding: 0 3px 3px 0;
+   background-repeat: no-repeat;
+   background-origin: content-box;
+   box-sizing: border-box;
+   cursor: se-resize;
+ }
+
+ .superFancyBlockquote {
+   color: #999;
+   width: 50%;
+   font-family: 'Hoefler Text', Georgia, serif;
+   font-style: italic;
+   font-size: 24px;
+   line-height: 30px;
+   border-radius: 10px;
+   padding: 15px 30px;
+   margin: 40px auto;
+   background: #eee;
+ }
+
+.sites-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 56px;
+  background: #444;
+}
+
+.sites-sidebar .sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ccc;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: color 0.25s, background 0.25s;
+}
+
+.sites-sidebar .sidebar-item:hover {
+  color: #03A9F4;
+  background: #555;
+}
+
+.sites-sidebar .sidebar-item.active {
+  color: #03A9F4;
+  background: #555;
+}
+
+.sites-content {
+  margin-left: 64px;
+  background: #eee;
+}
+
+.editor-sidebar {
+  position: fixed;
+  top: 0;
+  left: 64px;
+  height: 100%;
+  width: 200px;
+  background: #666;
+}
+
+.editor-sidebar > .sidebar-header {
+    font-size: 16px;
+    color: #ccc;
+    margin: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.editor-sidebar > .sidebar-group {
+  padding-top: 20px;
+}
+
+.editor-sidebar > .sidebar-group > h1 {
+  margin: 0;
+  font-size: 16px;
+  color: #eee;
+}
+
+.editor-sidebar > .sidebar-group > ul {
+  color: #eee;
+  margin: 0;
+  padding: 10px;
+  line-height: 24px;
+  list-style: none;
+}
+
+.editor-sidebar > .sidebar-group > ul > a {
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.editor-sidebar > .sidebar-group > ul > a:hover {
+  color: #ccc;
+}
+.sidebar-tabs {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 24px;
+}
+
+.sidebar-tabs > .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.25s, background 0.25s;
+}
+
+.sidebar-tabs > .tab:hover {
+  background: #444;
+  color: #03A9F4;
+}
