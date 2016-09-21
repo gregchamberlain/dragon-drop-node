@@ -37,7 +37,13 @@ export const call = ({ dispatch, request, loading, success, error, prev, preload
         throw resp.json();
       }
        return resp.json();
-    }).then(onSuccess).catch(err => err.then(onError));
+    }).then(onSuccess).catch(err => {
+      if (err.then) {
+        err.then(onError);
+      } else {
+        console.log('ERROR: ', err);
+      }
+    });
   }
 
 };

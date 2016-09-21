@@ -21,8 +21,8 @@ const SiteReducer = (state = {}, action) => {
       newState[action.siteId].pages.push(action.pageId);
       return newState;
     case REMOVE_PAGE:
-      nextState = merge({}, state)
-      const site = nextState[action.page.site_id];
+      nextState = merge({}, state);
+      const site = nextState[action.page.siteId];
       const pageId = `${site.identifier}${action.page.path}`;
       site.pages = site.pages.filter(id => id !== pageId);
       return nextState;

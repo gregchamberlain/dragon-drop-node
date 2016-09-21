@@ -47,7 +47,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case UPDATE_PAGE:
-      let p = merge({}, getState().pages[action.pageId]);
+      let p = merge({}, action.page);
       p.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
@@ -56,8 +56,8 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));
           if (action.oldPage.path !== resp.path) {
-            dispatch(addPage(resp.site_id, `${resp.site_id}${resp.path}`));
-            dispatch(push(`/sites/${resp.site_id}/editor${resp.path}`));
+            dispatch(addPage(resp.siteId, `${resp.siteId}${resp.path}`));
+            dispatch(push(`/sites/${resp.siteId}/editor${resp.path}`));
             dispatch(removePage(action.oldPage));
           }
           return 'Page successfully updated';
@@ -65,8 +65,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case SAVE_PAGE:
-      let newPage = merge({}, action.page);
-      console.log(action);
+      let newPage = merge({}, getState().pages[action.pageId]);
       newPage.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
