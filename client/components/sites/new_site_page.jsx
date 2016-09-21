@@ -4,11 +4,11 @@ import HeaderBar from '../ui/header_bar_container';
 import { connect } from 'react-redux';
 import SitesIndexItem from './sites_index_item';
 import { toArray } from '../../util/entity_utils.js';
-import { isObject } from 'lodash'
+import { isObject } from 'lodash';
 import { createSite } from '../../actions/site_actions';
 import { cloneTemplate } from '../../actions/template_actions';
 
-const BLANK_SITE = {id: 0, name: "Blank Site"};
+const BLANK_SITE = {id: 0, name: "Blank Site", rootPage: {components: []}};
 
 class NewSitePage extends Component {
 

@@ -8,12 +8,12 @@ import { parsePageId } from '../../../util/router_utils.js';
 import { openCatalog, closeCatalog } from '../../../actions/editor_actions.js';
 
 const mapStateToProps = ({ sites, pages, editor }, { params, location }) => ({
-  site: sites[params.siteId],
-  pages: map(sites[params.siteId], 'pages', pages),
-  currentPage: params.pageId ? `/${params.pageId}` : location.pathname.indexOf('new-page') === -1 ? '/' : '/new-page',
-  location: `/sites/${params.siteId}/editor`,
-  catalogOpen: editor.catalogOpen
-});
+    site: sites[params.siteId],
+    pages: map(sites[params.siteId], 'pages', pages),
+    currentPage: params.pageId ? `/${params.pageId}` : location.pathname.indexOf('new-page') === -1 ? '/' : '/new-page',
+    location: `/sites/${params.siteId}/editor`,
+    catalogOpen: editor.catalogOpen
+  });
 
 const mapDispatchToProps = (dispatch, { params, location }) => ({
   changePage: e => {

@@ -15,7 +15,7 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
         request: API.fetchSites(),
         loading: ['sites', 'Fetching your websites...'],
         success: resp => {
-          dispatch(receiveEntity(normalize(resp, arrayOfSites)))
+          dispatch(receiveEntity(normalize(resp, arrayOfSites)));
         }
       });
       return next(action);
@@ -23,14 +23,15 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
       const prev = getState().sites[action.siteId];
       call({
         dispatch,
-        prev: prev && prev.pages,
+        // prev: prev && prev.pages,
         request: API.fetchSite(action.siteId),
         loading: ['site', 'Fetching your website...'],
         success: resp => {
+          console.log(normalize(resp, site));
           dispatch(receiveEntity(normalize(resp, site)));
         },
         error: err => {
-          dispatch(push('/sites'))
+          dispatch(push('/sites'));
         }
       });
       return next(action);
@@ -42,9 +43,9 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
         success: resp => {
           dispatch(receiveEntity(normalize(resp, site)));
           dispatch(push(`/sites/${resp.identifier}/editor`));
-          return 'Site successfully created!'
+          return 'Site successfully created!';
         }
-      })
+      });
       return next(action);
     case ACTIONS.UPDATE_SITE:
       call({
@@ -78,7 +79,7 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
           dispatch(receiveEntity(normalize(resp, site)));
           return 'Site Successfully Deployed';
         }
-      })
+      });
       return next(action);
     default:
       return next(action);

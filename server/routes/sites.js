@@ -38,16 +38,19 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:id', findSite(false), (req, res, next) => {
-  Page.find({siteId: req.site.identifier}, (err, pages) => {
+  Page.find({siteId: req.site.identifier}).exec((err, pages) => {
     if (err) return next(err);
     const site = req.site.toObject();
-    site.pages = pages;
     res.json(site);
   });
 });
 
 router.put('/:id', findSite(), (req, res, next) => {
-  Site.findOneAndUpdate({identifier: req.params.id}, req.body.site, {new: true}, (err, site) => {
+  Site.findOneAndUpdate(
+    {identifier: req.params.id},
+    req.body.site,
+    {new: true}
+  ).populate('rootPage').exec((err, site) => {
     if (err) next(err);
     res.json(site);
   });

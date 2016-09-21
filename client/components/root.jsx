@@ -30,7 +30,7 @@ const validateUser = (store) => {
 
 const saveOnLeave = store => ({ params }) => {
   store.dispatch(savePage(parsePageId(params)));
-}
+};
 
 const Root = ({ store, history }) => (
   <Provider store={store}>

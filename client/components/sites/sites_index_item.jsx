@@ -7,7 +7,7 @@ import _ from 'lodash';
 import Catalog from '../../catalog';
 
 const createElement = el => {
-  let i = `${el.id}`;
+  let i = `${el._id}`;
   let Comp = Catalog[el.name];
   const layout = el.layout;
   const props = el.props;
@@ -18,7 +18,7 @@ const createElement = el => {
   );
 };
 
-const layout = components => components.map(c => _.merge({}, JSON.parse(c.layout)));
+const layout = components => components.map(c => _.merge({}, c.layout));
 
 const getUrl = (site, template, selected) => (
   template ? `/sites/${site.identifier}/editor` : {pathname: `/preview/${site.identifier}`, query: {back: selected ? '/sites/new' : '/templates'}}
@@ -38,7 +38,11 @@ class SitesIndexItem extends Component {
 
   handleClick = e => {
     const { selected, site, router, template, onClick } = this.props;
-    selected ?  onClick(site) : router.push(getUrl(site, template, selected));
+    if (selected) {
+      onClick(site);
+    } else {
+      router.push(getUrl(site, template, selected));
+    }
   }
 
 

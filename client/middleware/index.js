@@ -1,4 +1,3 @@
-import LayoutMiddleware from './layout_middleware';
 import SiteMiddleware from './site_middleware';
 import PageMiddleware from './page_middleware';
 import SessionMiddleware from './session_middleware';
@@ -11,7 +10,6 @@ import { hashHistory } from 'react-router';
 import { applyMiddleware } from 'redux';
 
 export default applyMiddleware(
-  LayoutMiddleware,
   SiteMiddleware,
   PageMiddleware,
   SessionMiddleware,

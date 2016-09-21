@@ -9,7 +9,7 @@ export const fetchPages = (siteId, success, error) => {
 
 export const destroyPage = page => ({
   method: 'DELETE',
-  url: `api/pages/${page.id}`
+  url: `api/pages/${page._id}`
 });
 
 export const createPage = (siteId, page) => ({
@@ -20,7 +20,7 @@ export const createPage = (siteId, page) => ({
 
 export const updatePage = page => ({
   method: 'PUT',
-  url: `api/pages/${page.id}`,
+  url: `api/pages/${page._id}`,
   data: {page}
 });
 

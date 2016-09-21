@@ -11,6 +11,7 @@ export const call = ({ dispatch, request, loading, success, error, prev, preload
   };
 
   const onError = e => {
+    console.log('error!', e);
     dispatch(stopLoading(loading[0]));
     e.responseJSON && e.responseJSON.forEach(err => {
       dispatch(createNotification('error', err));

@@ -50,7 +50,7 @@ class LayoutEditor extends Component {
   }
 
   createElement = (el) => {
-    let i = `${el.id || el.tempId}`;
+    let i = el._id || el.tempId;
     let layout = _.merge({}, el.layout);
     layout.i = i;
     let Comp = Catalog[el.name];

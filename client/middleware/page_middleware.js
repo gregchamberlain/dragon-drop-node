@@ -64,21 +64,20 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       return next(action);
     case SAVE_PAGE:
       let p = merge({}, getState().pages[action.pageId]);
-      p.components_attributes = stringify(p.components.map(id => merge({}, getState().components[id])))
-      delete p.components
+      p.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
-        request: updatePage(getState().pages[action.pageId]),
+        request: updatePage(p),
         loading: ['page', 'Saving Page...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));
           if (action.preview) dispatch(push(action.preview));
-          return `${p.name} Page saved!`
+          return `${p.name} Page saved!`;
         },
         error: e => {
           if (e.status === 403) dispatch(push('/sites'));
         }
-      })
+      });
       return next(action);
     case DESTROY_PAGE:
       call({

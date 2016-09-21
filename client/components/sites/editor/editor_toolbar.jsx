@@ -67,7 +67,7 @@ class EditorToolbar extends Component {
     super(props);
     this.state = {
       settings: false
-    }
+    };
   }
 
   componentDidMount() {

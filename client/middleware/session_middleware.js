@@ -19,7 +19,7 @@ const SessionMiddleware = ({getState, dispatch}) => next => action => {
           dispatch(push('/sites'));
           return 'Successfully Logged In';
         }
-      })
+      });
       // May need dispatch(ACTIONS.receiveCurrentUser(null)); in error handler
       return next(action);
     case ACTIONS.LOGOUT:
@@ -43,7 +43,7 @@ const SessionMiddleware = ({getState, dispatch}) => next => action => {
         success: resp => {
           dispatch(ACTIONS.receiveCurrentUser(resp));
           dispatch(push('/sites'));
-          return 'Successfully Signed Up'
+          return 'Successfully Signed Up';
         }
       });
       return next(action);
