@@ -12,8 +12,13 @@ export const call = ({ dispatch, request, loading, success, error, prev, preload
 
   const onError = e => {
     dispatch(stopLoading(loading[0]));
+    const errors = [];
     Object.keys(e.errors).forEach(key => {
-      dispatch(createNotification('error', e.errors[key].message));
+      const message = e.errors[key].message;
+      if (!errors.includes(message)) {
+        errors.push(message);
+        dispatch(createNotification('error', message));
+      }
     });
     if (error) error(e);
   };

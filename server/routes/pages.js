@@ -9,10 +9,15 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  Page.findByIdAndUpdate(req.params.id, req.body.page, {new: true}, (err, page) => {
-    if (err) next(err);
-    res.json(page);
-  });
+  Page.findByIdAndUpdate(
+    req.params.id,
+    req.body.page,
+    {new: true, runValidators: true, context: 'query' },
+    (err, page) => {
+      if (err) next(err);
+      res.json(page);
+    }
+  );
 });
 
 router.delete('/:id', (req, res, next) => {
