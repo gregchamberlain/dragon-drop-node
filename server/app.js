@@ -34,10 +34,9 @@ app.get('/', (req, res, next) => {
     if (err) return next(err);
     user.populateSites((err1, u) => {
       if (err1) return console.log('ERROR: ', err1);
+      user = u || 'null';
+      res.render('index', {user});
     });
-    user = user || 'null';
-    if (user )
-    res.render('index', {user});
   });
 });
 

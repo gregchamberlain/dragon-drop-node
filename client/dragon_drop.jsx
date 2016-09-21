@@ -5,16 +5,23 @@ import Root from './components/root.jsx';
 import { hashHistory } from 'react-router';
 import * as ACTIONS from './actions/session_actions.js';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { normalize } from 'normalizr';
+import { arrayOfSites } from './actions/schema';
+import { merge } from 'lodash';
 require('./styles/dragon_drop.scss');
 
 // let wing = new Audio('/assets/wing.mp3');
 // let dragon = new Audio('/assets/dragon.mp3');
 // document.addEventListener('click', () => dragon.play());
 // document.addEventListener('mousemove', () => wing.play());
+const userData = window.currentUser;
+const sites = normalize(userData.sites, arrayOfSites).entities.sites;
+const currentUser = merge({}, userData);
+delete currentUser.sites;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  let defaultState = {session: {currentUser: window.currentUser}};
+  let defaultState = {session: {currentUser}, sites};
   const store = window.store = configureStore(defaultState);
   const history = syncHistoryWithStore(hashHistory, store);
   const root = document.getElementById('root');

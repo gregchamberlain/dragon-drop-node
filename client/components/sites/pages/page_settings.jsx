@@ -5,7 +5,7 @@ import { merge } from 'lodash';
 export default class PageSettings extends Component {
   constructor(props) {
     super(props);
-    this.state = merge({}, props.page)
+    this.state = merge({}, props.page);
   }
 
   componentDidMount() {
@@ -30,7 +30,11 @@ export default class PageSettings extends Component {
   }
 
   updateState = name => e => {
-    this.setState({ [name]: e.target.value });
+    let val = e.target.value;
+    if (name === 'path' && val[0] !== '/') {
+      val = `/${val}`;
+    }
+    this.setState({ [name]: val });
   }
 
   submit = e => {
@@ -41,7 +45,7 @@ export default class PageSettings extends Component {
   destroyPage = e => {
     e.preventDefault();
     const { page, destroyPage } = this.props;
-    const confirmation = confirm(`Are you sure you want to delete ${page.name}`)
+    const confirmation = confirm(`Are you sure you want to delete ${page.name}`);
     if (confirmation) {
       destroyPage(page);
     }
