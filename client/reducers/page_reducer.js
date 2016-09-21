@@ -15,7 +15,7 @@ const PageReducer = (state = {}, action) => {
       return nextState;
     case DESTROY_COMPONENT:
       nextState = merge({}, state);
-      nextState[action.pageId].components = nextState[action.pageId].components.filter(id => id !== action.component.tempId);
+      nextState[action.pageId].components = nextState[action.pageId].components.filter(id => id !== action.component.tempId && id !== action.component._id);
       return nextState;
     default:
       return state;

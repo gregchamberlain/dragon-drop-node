@@ -10,7 +10,7 @@ router.post('/', (req, res, next) => {
       res.cookie(
         '__DRAGONDROP__SESSION',
         user.sessionToken,
-        { maxAge: 900000, httpOnly: true }
+        { maxAge: 365 * 24 * 60 * 60 * 1000, httpOnly: true }
       );
       res.json({_id: user._id, email: user.email});
     });

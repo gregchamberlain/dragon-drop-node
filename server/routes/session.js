@@ -9,13 +9,14 @@ router.post('/', (req, res, next) => {
     if (err) return next(err);
     if (!user) return res.status(404).json({message: 'A user with that email does not exist.'});
     if (bcrypt.compareSync(req.body.user.password, user.passwordDigest)) {
-      Site.find({userId: user.id}).populate('rootPage').exec((sErr, sites) => {
-        res.cookie(
-          '__DRAGONDROP__SESSION',
-          user.sessionToken,
-          { maxAge: 900000, httpOnly: true }
-        );
-        res.json({id: user.id, email: user.email, sites});
+      res.cookie(
+        '__DRAGONDROP__SESSION',
+        user.sessionToken,
+        { maxAge: 365 * 24 * 60 * 60 * 1000, httpOnly: true }
+      );
+      user.populateSites((err1, u) => {
+        if (err1) return next(err);
+        res.json(u);
       });
     } else {
       res.status(400).json({message: 'Invalid password for that email'});

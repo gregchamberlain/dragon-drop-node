@@ -9,8 +9,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  console.log(req.body.page)
+  console.log(req.body.page);
   Page.findByIdAndUpdate(req.params.id, req.body.page, {new: true}, (err, page) => {
+    console.log(err);
     if (err) next(err);
     res.json(page);
   });

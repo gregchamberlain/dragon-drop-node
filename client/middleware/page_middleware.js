@@ -29,7 +29,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
         request: fetchPage(action.pageId),
         loading: ['page', 'Fetching Page...'],
         success: resp => {
-          dispatch(receiveEntity(normalize(resp, page)))
+          dispatch(receiveEntity(normalize(resp, page)));
         }
       });
       return next(action);
@@ -47,9 +47,11 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case UPDATE_PAGE:
+      let p = merge({}, getState().pages[action.pageId]);
+      p.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
-        request: updatePage(action.page),
+        request: updatePage(p),
         loading: ['update-page', 'Saving page...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));
@@ -63,11 +65,12 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case SAVE_PAGE:
-      let p = merge({}, getState().pages[action.pageId]);
-      p.components = p.components.map(c => getState().components[c]);
+      let newPage = merge({}, action.page);
+      console.log(action);
+      newPage.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
-        request: updatePage(p),
+        request: updatePage(newPage),
         loading: ['page', 'Saving Page...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));
@@ -89,7 +92,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
           dispatch(removePage(resp));
           return `Successfully Destroyed ${resp.name} Page`;
         }
-      })
+      });
       return next(action);
     default:
       return next(action);

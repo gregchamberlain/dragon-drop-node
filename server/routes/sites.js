@@ -41,6 +41,7 @@ router.get('/:id', findSite(false), (req, res, next) => {
   Page.find({siteId: req.site.identifier}).exec((err, pages) => {
     if (err) return next(err);
     const site = req.site.toObject();
+    site.pages = pages;
     res.json(site);
   });
 });

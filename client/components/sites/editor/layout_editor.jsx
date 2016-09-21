@@ -25,13 +25,13 @@ class LayoutEditor extends Component {
         display: 'none',
         position: 'fixed',
       }
-    }
+    };
   }
 
   getChildContext() {
     return {
       site: this.props.site
-    }
+    };
   }
 
   handleKeyPress = e => {
@@ -80,10 +80,10 @@ class LayoutEditor extends Component {
     gifStyle.width = contentWidth;
     gifStyle.display = 'block';
     gifStyle.position = 'fixed';
-    gifStyle.transform = 'translateX(50%) translateY(-50%)'
-    this.setState({gifStyle})
-    setTimeout(this.destroyComponent(el), 675)
-    setTimeout(this.removeImage, 1000)
+    gifStyle.transform = 'translateX(50%) translateY(-50%)';
+    this.setState({gifStyle});
+    setTimeout(this.destroyComponent(el), 675);
+    setTimeout(this.removeImage, 1000);
   }
 
   destroyComponent = el => () => {
@@ -96,7 +96,7 @@ class LayoutEditor extends Component {
 
   toggleComponentLock = layout => {
     let newLayout = _.merge({}, layout);
-    newLayout.static = !newLayout.static
+    newLayout.static = !newLayout.static;
     this.props.updateLayout([newLayout]);
   }
 
@@ -117,7 +117,7 @@ class LayoutEditor extends Component {
 
   render() {
 
-    const components = _.map(_.map(this.props.components, this.createElement));
+    const components = _.map(this.props.components, this.createElement);
     const layout = this.props.components.map(c => _.merge({}, c.layout));
 
     return (

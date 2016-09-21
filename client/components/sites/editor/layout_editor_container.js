@@ -11,7 +11,7 @@ const mapStateToProps = ({ components, loading, pages, editor, sites }, { params
   params: params,
   site: sites[params.siteId],
   loading: loading['page'],
-  components: map(pages[parsePageId(params)], 'components', components).filter(c => !c._destroy),
+  components: map(pages[parsePageId(params)], 'components', components),
   locked: false,
   editor: editor.current,
   catalog: editor.catalogOpen

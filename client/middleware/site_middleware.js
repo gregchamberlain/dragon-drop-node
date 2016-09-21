@@ -27,7 +27,6 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
         request: API.fetchSite(action.siteId),
         loading: ['site', 'Fetching your website...'],
         success: resp => {
-          console.log(normalize(resp, site));
           dispatch(receiveEntity(normalize(resp, site)));
         },
         error: err => {

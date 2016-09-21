@@ -14,6 +14,7 @@ module.exports = getConfig({
     filename: 'bundle.js',
     cssFilename: 'styles.css'
   },
+  html: false,
 
   // This will destroy and re-create your
   // `out` folder before building so you always

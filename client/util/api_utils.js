@@ -11,12 +11,11 @@ export const call = ({ dispatch, request, loading, success, error, prev, preload
   };
 
   const onError = e => {
-    console.log('error!', e);
     dispatch(stopLoading(loading[0]));
-    e.responseJSON && e.responseJSON.forEach(err => {
-      dispatch(createNotification('error', err));
+    Object.keys(e.errors).forEach(key => {
+      dispatch(createNotification('error', e.errors[key].message));
     });
-    error && error(e);
+    if (error) error(e);
   };
 
 
@@ -33,7 +32,12 @@ export const call = ({ dispatch, request, loading, success, error, prev, preload
       },
       credentials: 'same-origin',
       body: JSON.stringify(req.data)
-    }).then(resp => resp.json()).then(onSuccess).catch(onError);
+    }).then(resp => {
+      if (!resp.ok) {
+        throw resp.json();
+      }
+       return resp.json();
+    }).then(onSuccess).catch(err => err.then(onError));
   }
 
 };

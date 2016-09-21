@@ -30,7 +30,7 @@ const ComponentReducer = (state = {}, action) => {
       return merge({}, state, {[action.component.tempId]: action.component});
     case DESTROY_COMPONENT:
       nextState = merge({}, state);
-      if (action.component.id) {
+      if (action.component._id) {
         delete nextState[action.component._id];
       } else {
         delete nextState[action.component.tempId];

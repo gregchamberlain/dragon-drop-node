@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/gregchamberlain/dragon-drop-node#readme",
   "dependencies": {
+    "async": "^2.0.1",
     "babel-preset-react-hmre": "^1.1.1",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
@@ -36,6 +37,7 @@
     "lodash": "^4.16.0",
     "moment": "^2.15.0",
     "mongoose": "^4.6.0",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "^1.7.0",
     "normalizr": "^2.2.1",
     "postcss-loader": "^0.13.0",

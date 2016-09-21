@@ -32,15 +32,22 @@ app.get('/', (req, res, next) => {
     sessionToken: req.cookies['__DRAGONDROP__SESSION']
   }, (err, user) => {
     if (err) return next(err);
-    if (user )
+    user.populateSites((err1, u) => {
+      if (err1) return console.log('ERROR: ', err1);
+    });
     user = user || 'null';
-    res.render('index');
+    if (user )
+    res.render('index', {user});
   });
 });
 
 app.use('/api', api);
 
 app.use((err, req, res, next) => {
+  if (err.code === 11000) {
+    console.log(err);
+    return res.status(400).send(err);
+  }
   if (err.name === 'ValidationError') {
     res.status(400).send(err);
   } else {
