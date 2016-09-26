@@ -32,6 +32,8 @@ export default class PageSettings extends Component {
   updateState = name => e => {
     let val = e.target.value;
     if (name === 'path' && val[0] !== '/') {
+      const idx = val.indexOf('/');
+      if (idx !== -1) {val = val.slice(idx + 1);}
       val = `/${val}`;
     }
     this.setState({ [name]: val });
