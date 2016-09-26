@@ -22,10 +22,10 @@ tour.addStep({
 
 class SiteSettings extends Component {
   componentDidMount() {
-    tour.start();
+    // tour.start();
   }
   componentWillUnmount() {
-    tour.hide();
+    // tour.hide();
   }
   render() {
     const { children, site, update, destroy, deploy } = this.props;
@@ -33,7 +33,7 @@ class SiteSettings extends Component {
       <div className="site-settings-page">
         <div className="site-settings-info">
           <h1>Site Settings</h1>
-          { site.deployed ? (
+          {/* { site.deployed ? (
             <div className="flex column center">
               <h3 style={{margin: 0}}>
                 <a href={`http://${site.identifier}.dragon-drop.com`} target="_blank" className="site-link">
@@ -45,7 +45,7 @@ class SiteSettings extends Component {
               </p>
             </div>
           ) : <p>Not yet Deployed</p>}
-          <button onClick={() => deploy(site)} className="deploy-button">Deploy</button>
+          <button onClick={() => deploy(site)} className="deploy-button">Deploy</button> */}
           <button className="destroy-button" onClick={() => destroy(site)}>delete site</button>
         </div>
         <SettingsForm site={site} update={update} destroy={destroy} deploy={deploy}/>

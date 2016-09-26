@@ -10,7 +10,6 @@ const PageReducer = (state = {}, action) => {
     case CLEAR_ENTITIES:
       return {};
     case UPDATE_ITEMS:
-      console.log(action.pageId);
       nextState = merge({}, state);
       nextState[action.pageId].items = action.items;
       return nextState;

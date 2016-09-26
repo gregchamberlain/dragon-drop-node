@@ -75,7 +75,7 @@ class EditorToolbar extends Component {
   }
 
   componentWillUnmount() {
-    tour.hide();
+    // tour.hide();
   }
 
   openSettings = () => {
