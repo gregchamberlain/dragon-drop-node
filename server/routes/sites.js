@@ -6,6 +6,7 @@ const findSite = require('../middleware/find_site');
 router.get('/', (req, res, next) => {
   Site.find({userId: req.user._id}).populate('rootPage').exec((err, sites) => {
     if (err) return next(err);
+    if (!sites.length) return res.json(sites);
     const result = sites.map(site => site.toObject());
     result.forEach((site, idx) => {
       Page.find({siteId: site.identifier}, (pErr, pages) => {
