@@ -2,23 +2,28 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { isEqual } from 'lodash';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
+import DragDropLayout, {
+  RootLayout, Row, Column, Title, Link, Image, Text
+} from 'react-dnd-layout';
 const Grid = WidthProvider(ReactGridLayout);
 import _ from 'lodash';
-import Catalog from '../../catalog';
+// import Catalog from '../../catalog';
 
-const createElement = el => {
-  let i = `${el._id}`;
-  let Comp = Catalog[el.name];
-  const layout = el.layout;
-  const props = el.props;
-  return (
-    <div key={i} data-grid={_.merge({}, layout)}>
-      <Comp {...props}/>
-    </div>
-  );
-};
+const comps = {Row, Column, Text, Title};
 
-const layout = components => components.map(c => _.merge({}, c.layout));
+// const createElement = el => {
+//   let i = `${el._id}`;
+//   let Comp = Catalog[el.name];
+//   const layout = el.layout;
+//   const props = el.props;
+//   return (
+//     <div key={i} data-grid={_.merge({}, layout)}>
+//       <Comp {...props}/>
+//     </div>
+//   );
+// };
+
+// const layout = components => components.map(c => _.merge({}, c.layout));
 
 const getUrl = (site, template, selected) => (
   template ? `/sites/${site.identifier}/editor` : {pathname: `/preview/${site.identifier}`, query: {back: selected ? '/sites/new' : '/templates'}}
@@ -26,14 +31,23 @@ const getUrl = (site, template, selected) => (
 
 class SitesIndexItem extends Component {
 
+  constructor(props) {
+    super(props);
+    const width = 240;
+    const ratio = width / window.screen.availWidth;
+    this.style = {
+      position: 'absolute',
+      width: window.screen.availWidth,
+      height: window.screen.availHeight,
+      transformOrigin: '0 0 0',
+      transform: `scale(${ratio})`
+    };
+  }
+
   componentDidMount() {
     const box = this.refs.box.getBoundingClientRect();
-    const width = box.right - box.left;
-    const height = box.bottom - box.top;
-    const viewWidth = 1366;
-    const viewHeight = 768;
-    const widthRatio = width / viewWidth;
-    const heightRatio = height / viewHeight;
+    // const width = box.right - box.left;
+    // const height = box.bottom - box.top;
   }
 
   handleClick = e => {
@@ -53,18 +67,12 @@ class SitesIndexItem extends Component {
       <div className={`site-item${ isEqual(selected, site) ? " selected" : ""}`}>
         <div className="site-wrapper">
           <div ref="box" className="sites-index-item" onClick={this.handleClick}>
-            <Grid
-              style={{position: 'absolute', top: 0, left: 0, width: 1366, height: 768, transform: 'scale(0.1756)', transformOrigin: '0 0'}}
-              margin={[0,0]}
-              isDraggable={false}
-              layout={layout(site.rootPage.components)}
-              isResizable={false}
-              className="site-preview"
-              verticalCompact={false}
-              cols={12}
-              rowHeight={768 / 50}>
-              {_.map(site.rootPage.components, createElement)}
-            </Grid>
+            <div style={this.style}>
+              <RootLayout
+                items={site.rootPage.items}
+                rootId="root"
+                components={comps} />
+            </div>
             { selected ? <button onClick={e => {e.stopPropagation(); router.push(getUrl(site, template, selected));}} className="preview-button">Preview</button> : ""}
           </div>
         </div>

@@ -8,8 +8,7 @@ const mapStateToProps = ({ loading, pages, components, sites }, { params, locati
   site: sites[params.siteId],
   siteId: params.siteId,
   loading: loading['site'],
-  a: console.log(pages[parsePageId(params)]),
-  page: pages[parsePageId(params)].items,
+  page: pages[parsePageId(params)],
   components: map(pages[parsePageId(params)], 'components', components),
   back: location.query.back
 });

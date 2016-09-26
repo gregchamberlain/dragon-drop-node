@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import LoadingPage from '../ui/loading_page';
 import HeaderBar from '../ui/header_bar_container';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import { isObject } from 'lodash';
 import { createSite } from '../../actions/site_actions';
 import { cloneTemplate } from '../../actions/template_actions';
 
-const BLANK_SITE = {id: 0, name: "Blank Site", rootPage: {components: []}};
+const BLANK_SITE = {id: 0, name: "Blank Site", rootPage: {items: {root: {props: { children: []}}}}};
 
 class NewSitePage extends Component {
 
@@ -21,7 +21,7 @@ class NewSitePage extends Component {
       template: false,
       changed: false,
       selectedTemplate: BLANK_SITE
-    }
+    };
   }
 
   selectTemplate = t => {
@@ -34,14 +34,14 @@ class NewSitePage extends Component {
 
   update = name => e => {
     if (name === 'template') {
-      this.setState({[name]: e.target.checked})
+      this.setState({[name]: e.target.checked});
     } else {
       let identifier = this.state.identifier;
       if (name === 'name' && (!this.state.changed || this.state.identifier === '')) {
-        identifier = this.parseIdentifier(e.target.value)
-        this.setState({name: e.target.value, identifier, changed: false})
+        identifier = this.parseIdentifier(e.target.value);
+        this.setState({name: e.target.value, identifier, changed: false});
       } else if (name === 'identifier') {
-        this.setState({changed: true, identifier: this.parseIdentifier(e.target.value)})
+        this.setState({changed: true, identifier: this.parseIdentifier(e.target.value)});
       } else {
         this.setState({[name]: e.target.value});
       }
@@ -66,7 +66,7 @@ class NewSitePage extends Component {
 
   render() {
 
-    const { loading, templates } = this.props
+    const { loading, templates } = this.props;
 
     return (
       <div className="fill">

@@ -18,7 +18,7 @@ const TemplateMiddleware = ({ getState, dispatch }) => next => action => {
         request: fetchTemplates(),
         loading: ['templates', 'Loading in Templates...'],
         success: resp => {
-          dispatch(receiveEntity(normalize(resp, arrayOfTemplates)))
+          dispatch(receiveEntity(normalize(resp, arrayOfTemplates)));
         }
       });
       return next(action);
@@ -30,9 +30,9 @@ const TemplateMiddleware = ({ getState, dispatch }) => next => action => {
         success: resp => {
           dispatch(receiveEntity(normalize(resp, site)));
           dispatch(push(`/sites/${resp.identifier}/editor`));
-          return 'Site successfully created from template!'
+          return 'Site successfully created from template!';
         }
-      })
+      });
       return next(action);
     default:
       return next(action);

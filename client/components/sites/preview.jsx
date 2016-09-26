@@ -6,8 +6,8 @@ import Catalog from '../../catalog';
 const Grid = WidthProvider(ReactGridLayout);
 import ArrowDown from 'react-icons/lib/fa/arrow-down';
 import Back from 'react-icons/lib/fa/arrow-left';
-import {
-  RootLayout, Row, Column , Text, Title, generateEmptyLayout
+import DragDropLayout, {
+  RootLayout, Row, Column, Title, Link, Image, Text
 } from 'react-dnd-layout';
 
 const comps = {Row, Column, Text, Title};
@@ -22,7 +22,7 @@ class SitePreview extends Component {
   }
 
   render () {
-    const { loading, components, siteId, site, goBack, back, page } = this.props;
+    const { loading, siteId, site, goBack, back, page } = this.props;
 
     return (
       <LoadingPage loading={loading}>

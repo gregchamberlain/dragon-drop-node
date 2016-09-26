@@ -21,12 +21,12 @@ const Sidebar = ({ children, params, loading }) => (
         activeClassName="active">
         <Pages />
       </Link>
-      <Link
+      {/* <Link
         to={`/sites/${params.siteId}/analytics`}
         className='sidebar-item'
         activeClassName="active">
         <Chart />
-      </Link>
+      </Link> */}
       <Link
         to={`/sites/${params.siteId}/settings`}
         className='sidebar-item site-settings-button'
