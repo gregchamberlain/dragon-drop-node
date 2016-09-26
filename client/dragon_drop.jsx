@@ -21,7 +21,7 @@ if (userData) delete currentUser.sites;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  let defaultState = {session: {currentUser}, sites};
+  let defaultState = userData ? {session: {currentUser}, sites} : {};
   const store = window.rootStore = configureStore(defaultState);
   const history = syncHistoryWithStore(hashHistory, store);
   const root = document.getElementById('root');
