@@ -22,7 +22,7 @@ delete currentUser.sites;
 document.addEventListener('DOMContentLoaded', () => {
 
   let defaultState = {session: {currentUser}, sites};
-  const store = window.store = configureStore(defaultState);
+  const store = window.rootStore = configureStore(defaultState);
   const history = syncHistoryWithStore(hashHistory, store);
   const root = document.getElementById('root');
 

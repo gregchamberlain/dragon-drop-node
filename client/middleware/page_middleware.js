@@ -65,8 +65,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case SAVE_PAGE:
-      let newPage = merge({}, getState().pages[action.pageId]);
-      newPage.components = newPage.components.map(c => getState().components[c]);
+      let newPage = getState().pages[action.pageId];
       call({
         dispatch,
         request: updatePage(newPage),

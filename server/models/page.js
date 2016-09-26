@@ -6,11 +6,7 @@ const PageSchema = new mongoose.Schema({
   siteId: { type: String, ref: 'Site', required: true },
   name: { type: String, required: true },
   path: { type: String, required: true },
-  components: [{
-    name: { type: String, required: true },
-    layout: { type: Schema.Types.Mixed, required: true },
-    props: { type: Schema.Types.Mixed, required: true },
-  }]
+  items: {type: Schema.Types.Mixed, default: {root: {id: 'root', type: 'Column', props: {children: []}}} }
 }, {
   timestamps: true
 });

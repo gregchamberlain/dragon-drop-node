@@ -71,7 +71,7 @@ class EditorToolbar extends Component {
   }
 
   componentDidMount() {
-    tour.start();
+    // tour.start();
   }
 
   componentWillUnmount() {

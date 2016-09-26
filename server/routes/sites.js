@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
 const Site = require('../models/site');
 const Page = require('../models/page');
 const findSite = require('../middleware/find_site');
@@ -22,7 +23,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const newSite = req.body.site;
-  const page = new Page({name: 'Home', path: '/', siteId: newSite.identifier});
+  const page = new Page({
+    name: 'Home',
+    path: '/',
+    siteId: newSite.identifier,
+  });
   newSite.userId = req.user._id;
   newSite.rootPage = page._id;
   Site.create(newSite, (err, site) => {

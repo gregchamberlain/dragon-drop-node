@@ -7,6 +7,7 @@ export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const REMOVE_COMPONENT = 'REMOVE_COMPONENT';
 export const DESTROY_PAGE = 'DESTROY_PAGE';
 export const SAVE_PAGE = 'SAVE_PAGE';
+export const UPDATE_ITEMS = 'UPDATE_ITEMS';
 
 export const removePage = page => ({
   type: REMOVE_PAGE,
@@ -56,4 +57,10 @@ export const removeComponent = (pageId, componentId) => ({
   type: REMOVE_COMPONENT,
   pageId,
   componentId
-})
+});
+
+export const updateItems = (pageId, items) => ({
+  type: UPDATE_ITEMS,
+  pageId,
+  items
+});

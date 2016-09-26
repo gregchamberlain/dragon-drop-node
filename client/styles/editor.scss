@@ -72,11 +72,9 @@ $toolbar-height: 56px;
 .editor-content {
   position: fixed;
   top: $toolbar-height;
-  left: 64px;
+  left: 56px;
   right: 0;
   bottom: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 
   .catalog-container {
     position: fixed;
