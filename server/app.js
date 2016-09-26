@@ -32,6 +32,7 @@ app.get('/', (req, res, next) => {
     sessionToken: req.cookies['__DRAGONDROP__SESSION']
   }, (err, user) => {
     if (err) return next(err);
+    if (!user) return res.render('index', {user: null});
     user.populateSites((err1, u) => {
       if (err1) return console.log('ERROR: ', err1);
       user = u || 'null';
