@@ -1,18 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import LoadingPage from '../ui/loading_page.jsx';
+import LoadingPage from '../ui/loading_page';
 import _ from 'lodash';
 import Catalog from '../../catalog';
 const Grid = WidthProvider(ReactGridLayout);
 import ArrowDown from 'react-icons/lib/fa/arrow-down';
 import Back from 'react-icons/lib/fa/arrow-left';
-import DragDropLayout, {
-  RootLayout, Row, Column, Title, Link, Image, Text
-} from 'react-dnd-layout';
-
-const comps = {Row, Column, Text, Title};
+import { RootLayout } from 'react-dnd-layout';
+import comps from '../../catalog';
 
 class SitePreview extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      back: props.back
+    };
+  }
 
   getChildContext = () => {
     return {
@@ -26,19 +30,23 @@ class SitePreview extends Component {
 
     return (
       <LoadingPage loading={loading}>
-        { back ? (
-          <div className="preview-overlay">
-            <div className="item action" onClick={goBack}>
+        <div className="preview-overlay">
+          { this.state.back ? (
+            <div className="item action" onClick={() => goBack(this.state.back)}>
               <Back />
             </div>
+            ) : ""}
           <div className="item">Preview</div>
-          </div>
-        ) : ""}
+        </div>
         <div style={{position: 'relative', width: '100%', flex: 1, background: '#fff'}}>
-          <RootLayout
-            items={page.items}
-            rootId="root"
-            components={comps} />
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <RootLayout
+              items={page.items}
+              rootId="root"
+              components={comps} />
+          )}
         </div>
       </LoadingPage>
     );

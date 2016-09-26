@@ -34,21 +34,6 @@ class LayoutEditor extends Component {
     };
   }
 
-  handleKeyPress = e => {
-    if (e.keyCode === 83 && e.ctrlKey === true) {
-      e.preventDefault();
-      this.props.savePage();
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
-
   createElement = (el) => {
     let i = el._id || el.tempId;
     let layout = _.merge({}, el.layout);
@@ -148,6 +133,6 @@ class LayoutEditor extends Component {
 
 LayoutEditor.childContextTypes = {
   site: PropTypes.object
-}
+};
 
-export default LayoutEditor
+export default LayoutEditor;

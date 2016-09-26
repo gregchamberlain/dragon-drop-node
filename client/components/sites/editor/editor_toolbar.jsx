@@ -70,12 +70,19 @@ class EditorToolbar extends Component {
     };
   }
 
+  handleKeyPress = e => {
+    if (e.keyCode === 83 && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.props.savePage();
+    }
+  }
+
   componentDidMount() {
-    // tour.start();
+    document.addEventListener('keydown', this.handleKeyPress);
   }
 
   componentWillUnmount() {
-    // tour.hide();
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   openSettings = () => {

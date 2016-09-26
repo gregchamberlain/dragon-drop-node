@@ -14,7 +14,7 @@ const mapStateToProps = ({ loading, pages, components, sites }, { params, locati
 });
 
 const mapDispatchToProps = (dispatch, { location }) => ({
-  goBack: () => dispatch(push(location.query.back))
+  goBack: back => dispatch(push(back))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SitePreview);

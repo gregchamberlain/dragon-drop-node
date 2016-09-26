@@ -23,8 +23,8 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
       const prev = getState().sites[action.siteId];
       call({
         dispatch,
-        preloaded: prev && prev.pages,
-        // prev: prev && prev.pages,
+        // preloaded: prev && prev.pages,
+        prev: prev && prev.pages,
         request: API.fetchSite(action.siteId),
         loading: ['site', 'Fetching your website...'],
         success: resp => {
