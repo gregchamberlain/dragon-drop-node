@@ -41,7 +41,8 @@ button {
     // background: black;
   }
 
-  input {
+  input, textarea, select {
+    width: 100%;
     font-size: inherit;
   }
 
