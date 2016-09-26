@@ -15,9 +15,9 @@ require('./styles/dragon_drop.scss');
 // document.addEventListener('click', () => dragon.play());
 // document.addEventListener('mousemove', () => wing.play());
 const userData = window.currentUser;
-const sites = normalize(userData.sites, arrayOfSites).entities.sites;
+const sites = userData ? normalize(userData.sites, arrayOfSites).entities.sites : {};
 const currentUser = merge({}, userData);
-delete currentUser.sites;
+if (userData) delete currentUser.sites;
 
 document.addEventListener('DOMContentLoaded', () => {
 
