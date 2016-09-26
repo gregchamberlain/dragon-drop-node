@@ -66,7 +66,7 @@ class NewSitePage extends Component {
 
   render() {
 
-    const { loading, templates } = this.props;
+    const { creating, loading, templates } = this.props;
 
     return (
       <div className="fill">
@@ -74,6 +74,7 @@ class NewSitePage extends Component {
           <HeaderBar />
         </div>
         <form onSubmit={this.handleSubmit} className="new-site-form">
+        <LoadingPage loading={creating}>
           <label>
             Name
             <input type="text" value={this.state.name} onChange={this.update("name")} />
@@ -91,6 +92,7 @@ class NewSitePage extends Component {
             <input type="checkbox" value={this.state.template} onChange={this.update("template")} />
           </label>
           <button type="submit">Create</button>
+          </LoadingPage>
         </form>
         <div className="new-site-templates">
           <LoadingPage loading={loading}>
@@ -118,7 +120,8 @@ class NewSitePage extends Component {
 
 const mapStateToProps = ({ templates, loading }) => ({
   templates: toArray(templates),
-  loading: loading['templates']
+  loading: loading['templates'],
+  creating: loading['create-site']
 });
 
 const mapDispatchToProps = dispatch => ({

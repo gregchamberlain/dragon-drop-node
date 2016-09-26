@@ -66,7 +66,13 @@ router.put('/:id', findSite(), (req, res, next) => {
 router.delete('/:id', findSite(), (req, res, next) => {
   Site.findOneAndRemove({identifier: req.params.id}, (err, site) => {
     if (err) return next(err);
-    res.json(site);
+    Page.find({siteId: req.params.id}, (err1, pages) => {
+      if (!pages.length) return res.json(site);
+      pages.forEach((page, idx) => {
+        page.remove();
+        if (idx === pages.length - 1) res.json(site);
+      });
+    });
   });
 });
 

@@ -39,7 +39,7 @@ const SiteMiddleware = ({ getState, dispatch }) => next => action => {
       call({
         dispatch,
         request: API.createSite(action.site),
-        loading: ['new-site', 'Creating Site...'],
+        loading: ['create-site', 'Creating Site...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, site)));
           dispatch(push(`/sites/${resp.identifier}/editor`));

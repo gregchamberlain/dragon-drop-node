@@ -205,8 +205,8 @@ $light-blue-600: #03A9F4;
 .new-site-form {
   position: fixed;
   width: 400px;
-  height: 100%;
-  top: 0;
+  bottom: 0;
+  top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -226,6 +226,10 @@ $light-blue-600: #03A9F4;
     &:focus {
       border-bottom: 2px solid black;
     }
+  }
+
+  label {
+    width: 100%;
   }
 
   button {

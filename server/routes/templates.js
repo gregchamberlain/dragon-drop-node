@@ -26,7 +26,6 @@ router.post('/:id/clone', auth, (req, res, next) => {
         page._id = page.path === '/' ? rootPageId : mongoose.Types.ObjectId();
         page.isNew = true;
         page.siteId = site.identifier;
-        page.components.forEach(c => { delete c._id; });
         page.save(err2 => {
           if (err2) return next(err2);
           count++;

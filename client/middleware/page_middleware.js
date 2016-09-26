@@ -67,7 +67,7 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       call({
         dispatch,
         request: updatePage(newPage),
-        loading: ['page', 'Saving Page...'],
+        loading: ['save-page', 'Saving Page...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));
           if (action.preview) dispatch(push(action.preview));

@@ -88,7 +88,7 @@ class EditorToolbar extends Component {
 
   render() {
     const { pages, currentPage, changePage, children, savePage, preview, site,
-      openCatalog, catalogOpen, closeCatalog, params } = this.props;
+      openCatalog, catalogOpen, closeCatalog, params, saving } = this.props;
     return (
       <div>
         <div className='editor-content'>
@@ -115,7 +115,15 @@ class EditorToolbar extends Component {
             ) : ""}
           </div>
           <div className='toolbar-item action' onClick={preview}>Preview</div>
-          <div className='toolbar-item action save-button' onClick={savePage}>Save</div>
+          <div className='toolbar-item action save-button' onClick={saving ? () => {} : savePage}>
+            { saving ? (
+              <div className="spinner">
+                <div className="bounce1"></div>
+                <div className="bounce2"></div>
+                <div className="bounce3"></div>
+              </div>
+            ) : "save" }
+          </div>
         </div>
 
       </div>

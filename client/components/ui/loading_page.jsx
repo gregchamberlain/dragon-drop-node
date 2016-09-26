@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LoadingPage = ({ loading, children, small, light }) => (
-  <div className={`loading-page${small ? " small" : ""}`}>
+const LoadingPage = ({ loading, children, small, light, className }) => (
+  <div className={`loading-page${small ? " small" : ""}${className ? ` ${className}` : ''}`}>
     { loading ? (
       <div className={`loading-grid${small ? " small" : ""}${light ? " light" : ""}`}>
         <div className="sk-cube-grid">

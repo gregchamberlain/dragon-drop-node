@@ -73,7 +73,7 @@ class SitesIndexItem extends Component {
                 rootId="root"
                 components={comps} />
             </div>
-            { selected ? <button onClick={e => {e.stopPropagation(); router.push(getUrl(site, template, selected));}} className="preview-button">Preview</button> : ""}
+            { selected && site._id ? <button onClick={e => {e.stopPropagation(); router.push(getUrl(site, template, selected));}} className="preview-button">Preview</button> : ""}
           </div>
         </div>
         <div style={{textAlign: 'center', fontWeight: 'bold'}}>{site.name}</div>

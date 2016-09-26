@@ -4,7 +4,7 @@ export const site = new Schema('sites', { idAttribute: 'identifier' });
 
 export const arrayOfSites = arrayOf(site);
 
-export const template = new Schema('templates');
+export const template = new Schema('templates', { idAttribute: '_id' });
 export const arrayOfTemplates = arrayOf(template);
 
 const pageId = entity => `${entity.siteId}${entity.path}`;
