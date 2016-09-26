@@ -76,6 +76,11 @@ $toolbar-height: 56px;
   right: 0;
   bottom: 0;
 
+  input, textarea, select {
+    width: 100%;
+    font-size: inherit;
+  }
+
   .catalog-container {
     position: fixed;
     left: 66px;
