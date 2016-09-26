@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SitePreview from './preview.jsx';
-import { map } from '../../util/entity_utils.js'
+import { map } from '../../util/entity_utils.js';
 import { parsePageId } from '../../util/router_utils.js';
 import { push } from 'react-router-redux';
 
@@ -8,6 +8,8 @@ const mapStateToProps = ({ loading, pages, components, sites }, { params, locati
   site: sites[params.siteId],
   siteId: params.siteId,
   loading: loading['site'],
+  a: console.log(pages[parsePageId(params)]),
+  page: pages[parsePageId(params)].items,
   components: map(pages[parsePageId(params)], 'components', components),
   back: location.query.back
 });

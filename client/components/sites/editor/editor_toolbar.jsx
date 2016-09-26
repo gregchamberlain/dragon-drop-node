@@ -95,11 +95,6 @@ class EditorToolbar extends Component {
           {children}
         </div>
         <div className='editor-toolbar'>
-          <div
-            className='toolbar-item action brand'
-            onClick={catalogOpen ? closeCatalog : openCatalog}>
-            <Plus className={`catalog-button icon${catalogOpen ? " rotated" : ""}`}/>
-          </div>
           <div className='toolbar-item brand'>{site.name}</div>
           <div className='toolbar-item'>/</div>
           <select value={currentPage} onChange={changePage}>

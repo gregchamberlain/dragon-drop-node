@@ -47,11 +47,9 @@ const PageMiddleware = ({ getState, dispatch }) => next => action => {
       });
       return next(action);
     case UPDATE_PAGE:
-      let p = merge({}, action.page);
-      p.components = p.components.map(c => getState().components[c]);
       call({
         dispatch,
-        request: updatePage(p),
+        request: updatePage(action.page),
         loading: ['update-page', 'Saving page...'],
         success: resp => {
           dispatch(receiveEntity(normalize(resp, page)));

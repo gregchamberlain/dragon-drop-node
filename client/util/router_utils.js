@@ -1,6 +1,6 @@
 import { requestSites, requestSite } from '../actions/site_actions';
 import { requestTemplates } from '../actions/template_actions';
-import { requestPage } from '../actions/page_actions'
+import { requestPage } from '../actions/page_actions';
 
 export const fetchSites = store => {
   return () => store.dispatch(requestSites());
@@ -15,7 +15,7 @@ export const fetchTemplates = store => () => {
 };
 
 export const fetchPage = (store) => state => {
-  store.dispatch(requestPage(state.params.pageId))
+  store.dispatch(requestPage(state.params.pageId));
 };
 
 export const parsePageId = params => (

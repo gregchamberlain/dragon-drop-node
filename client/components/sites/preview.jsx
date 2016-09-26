@@ -6,18 +6,11 @@ import Catalog from '../../catalog';
 const Grid = WidthProvider(ReactGridLayout);
 import ArrowDown from 'react-icons/lib/fa/arrow-down';
 import Back from 'react-icons/lib/fa/arrow-left';
+import {
+  RootLayout, Row, Column , Text, Title, generateEmptyLayout
+} from 'react-dnd-layout';
 
-const createElement = siteId => el => {
-  let i = `${el.id}`;
-  let Comp = Catalog[el.name];
-  return (
-    <div key={i} data-grid={_.merge({}, el.layout)}>
-      <Comp {...el.props}/>
-    </div>
-  );
-}
-
-const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+const comps = {Row, Column, Text, Title};
 
 class SitePreview extends Component {
 
@@ -25,12 +18,11 @@ class SitePreview extends Component {
     return {
       preview: this.props.siteId,
       site: this.props.site
-    }
+    };
   }
 
   render () {
-    const { loading, components, siteId, site, goBack, back } = this.props
-    const layout = components.map(c => _.merge({}, c.layout));
+    const { loading, components, siteId, site, goBack, back, page } = this.props;
 
     return (
       <LoadingPage loading={loading}>
@@ -42,18 +34,11 @@ class SitePreview extends Component {
           <div className="item">Preview</div>
           </div>
         ) : ""}
-        <div style={{width: '100%', flex: 1, background: '#fff', fontSize: '1.43vw'}}>
-          <Grid
-            margin={[0,0]}
-            isDraggable={false}
-            layout={layout}
-            isResizable={false}
-            className="site-preview"
-            verticalCompact={false}
-            cols={12}
-            rowHeight={height / 50}>
-            {_.map(components, createElement(siteId))}
-          </Grid>
+        <div style={{position: 'relative', width: '100%', flex: 1, background: '#fff'}}>
+          <RootLayout
+            items={page.items}
+            rootId="root"
+            components={comps} />
         </div>
       </LoadingPage>
     );
@@ -63,6 +48,6 @@ class SitePreview extends Component {
 SitePreview.childContextTypes = {
   preview: PropTypes.string,
   site: PropTypes.object,
-}
+};
 
 export default SitePreview;
