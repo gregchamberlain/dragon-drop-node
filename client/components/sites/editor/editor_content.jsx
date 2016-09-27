@@ -2,7 +2,7 @@ import React from 'react';
 import DragDropLayout, {
   Row, Column , Text, Title, generateEmptyLayout
 } from 'react-dnd-layout';
-import comps from '../../../catalog';
+import comps from '../../../../catalog/src';
 
 const EditorContent = ({ page, update, pages }) => (
   <DragDropLayout

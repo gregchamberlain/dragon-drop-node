@@ -7,6 +7,7 @@
     "start": "node server/app.js",
     "dev": "hjs-dev-server",
     "build": "webpack",
+    "buildCatalog": "NODE_ENV=production ./scripts/buildCatalog.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

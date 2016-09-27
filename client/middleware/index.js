@@ -3,7 +3,6 @@ import PageMiddleware from './page_middleware';
 import SessionMiddleware from './session_middleware';
 import NotificationMiddleware from './notification_middleware';
 import TemplateMiddleware from './template_middleware';
-import ComponentMiddleware from './component_middleware';
 import { routerMiddleware } from 'react-router-redux';
 import { hashHistory } from 'react-router';
 

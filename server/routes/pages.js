@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Page = require('../models/page');
+const renderPageToString = require('../utils/renderer');
 
 router.get('/:id', (req, res, next) => {
   Page.findById(req.params.id, (err, page) => {
